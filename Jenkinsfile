@@ -1,10 +1,3 @@
-
-String branchName = env.BRANCH_NAMEString 
-env = env.BRANCH_NAME
-
-def featureEnv = env.BRANCH_NAME != 'master'
-
-
 pipeline {
     agent any
 
@@ -30,12 +23,6 @@ pipeline {
                 chmod +x deploy.sh
                 bash $WORKSPACE/deploy.sh
                 '''
-         stage('QA_Deploy') {
-            steps {
-                echo 'Deploying TO QA....'
-                sh '''
-                chmod +x deploy.sh
-                bash $WORKSPACE/deploy.sh
               
 
             }
