@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('removing old version') {
+            steps {
+                
+                sh 'sudo docker rmi testimage'
+            }
         stage('Build') {
             steps {
                 sh 'cd $WORKSPACE'
@@ -10,22 +15,12 @@ pipeline {
                 sh 'sudo docker build -t testimage .'
             }
         }
-        stage('Pushing to ECR') {
+        stage('Creating container') {
             steps {
-                sh 'sudo docker tag testimage:latest public.ecr.aws/m4p7d9s0/test:latest'
-                sh 'sudo docker push public.ecr.aws/m4p7d9s0/test:latest'
+               sh 'sudo docker run -d testimage'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                sh '''
-                chmod +x deploy.sh
-                bash $WORKSPACE/deploy.sh
-                '''
-              
-
-            }
+        
         }
     }
 }
