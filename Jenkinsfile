@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('removing old version') {
+        stage('Cleaning') {
             steps {
                 
                 sh 'sudo docker rmi testimage'
+            }
             }
         stage('Build') {
             steps {
