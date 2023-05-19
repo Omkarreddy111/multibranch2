@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Creating container') {
             steps {
-                sh 'sudo docker rm $(sudo docker ps -a -q)' 
+                sh 'sudo docker rm -f $(sudo docker ps -a -q)' 
                sh 'sudo docker run -d -p 8081:8080 testimage'
             }
         }
