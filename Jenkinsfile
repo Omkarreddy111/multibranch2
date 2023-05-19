@@ -4,28 +4,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                
                 sh 'cd $WORKSPACE'
                 sh 'pwd' 
                 echo 'Building..'
                 sh 'sudo docker build -t testimage .'
+                
             }
         }
-        stage('Pushing to ECR') {
+        stage('Creating container') {
             steps {
-                sh 'sudo docker tag testimage:latest public.ecr.aws/m4p7d9s0/test:latest'
-                sh 'sudo docker push public.ecr.aws/m4p7d9s0/test:latest'
+                sh 'sudo docker rm -f $(sudo docker ps -a -q)' 
+               sh 'sudo docker run -d -p 8081:8080 testimage'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                sh '''
-                chmod +x deploy.sh
-                bash $WORKSPACE/deploy.sh
-                '''
-              
-
-            }
+        
         }
     }
-}
