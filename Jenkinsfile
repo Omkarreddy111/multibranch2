@@ -8,14 +8,30 @@ pipeline {
                 sh 'cd $WORKSPACE'
                 sh 'pwd' 
                 echo 'Building..'
-                sh 'sudo docker build -t testimage .'
+                sh 'sudo docker build -t qaimage .'
                 
             }
         }
-        stage('Creating container') {
+        stage('Tagging Image') {
             steps {
-                sh 'sudo docker rm -f $(sudo docker ps -a -q)' 
-               sh 'sudo docker run -d -p 8081:8080 testimage'
+                
+                sh 'sudo docker tag  qaimage:latest 688117735572.dkr.ecr.us-east-2.amazonaws.com/demo_app:QA'
+                
+            }
+        }
+        stage('Pushing Image') {
+            steps {
+                
+                sh 'sudo docker push 688117735572.dkr.ecr.us-east-2.amazonaws.com/demo_app:QA'
+                
+            }
+        }
+        stage('Deploy to ECS') {
+            steps {
+                sh 'cd $WORKSPACE'
+                sh './deploy.sh'
+                sh 'echo Deployed to QA environment'
+            
             }
         }
         
