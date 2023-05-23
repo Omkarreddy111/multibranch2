@@ -29,6 +29,7 @@ pipeline {
         stage('Deploy to ECS') {
             steps {
                 sh 'cd $WORKSPACE'
+                sh 'chmod +x deploy.sh'
                 sh './deploy.sh'
                 sh 'echo Deployed to QA environment'
             
