@@ -31,7 +31,8 @@ pipeline {
                 sh 'cd $WORKSPACE'
                 sh 'chmod +x deploy.sh'
                 sh './deploy.sh'
-                sh 'echo Deployed to QA environment'
+                sh 'echo Deployed to QA environment access below URL for QA'
+                sh 'echo "http://demo-qa-app-153284655.us-east-2.elb.amazonaws.com/sample/"'
             
             }
         }
