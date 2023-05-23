@@ -15,7 +15,7 @@ pipeline {
         stage('Tagging Image') {
             steps {
                 
-                sh 'sudo docker tag  qaimage:latest 688117735572.dkr.ecr.us-east-2.amazonaws.com/demo_app:PROD'
+                sh 'sudo docker tag  prodimage:latest 688117735572.dkr.ecr.us-east-2.amazonaws.com/demo_app:PROD'
                 
             }
         }
