@@ -31,7 +31,9 @@ pipeline {
                 sh 'cd $WORKSPACE'
                 sh 'chmod +x deploy.sh'
                 sh './deploy.sh'
-                sh 'echo Deployed to PROD environment'
+                sh 'echo Deployed to PROD environment access below url for PROD'
+                
+                sh 'echo "http://prod-demo-app-1416235952.us-east-2.elb.amazonaws.com/sample/"'
             
             }
         }
