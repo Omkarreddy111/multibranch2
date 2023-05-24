@@ -1,6 +1,6 @@
 <html>
 <body style="background-color:tomato;">
-<h2 style="text-align:center;">THIS IS SGPA QA  ..CALCULATOR</h2>
+<h2 style="text-align:center;">THIS IS SGPA QA TEST CALCULATOR</h2>
 <h3  style="background-color:powderblue;">THIS IS QA ENVIRONMENT</h3>
  <h3>Enter values here for 6 subjects</h3>
 <form action = "for6" style="text-align:center; font-size:250%;">
